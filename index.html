@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suparna Jana | YCSAS Portfolio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+:root{
+  --grad:linear-gradient(135deg,#7b2ff7,#ff4ecd);
+  --bg:#f6f2ff;
+  --card:#ffffff;
+  --text:#222;
+}
+
+body.dark{
+  --bg:#0e0b1f;
+  --card:#1c1636;
+  --text:#fff;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  scroll-behavior:smooth;
+}
+
+/* ===== WELCOME ===== */
+#welcome{
+  position:fixed;
+  inset:0;
+  background:var(--grad);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  z-index:10;
+}
+#welcome h1{font-size:3rem;animation:pop 1s ease;}
+#welcome button{
+  margin-top:25px;
+  padding:14px 35px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+}
+@keyframes pop{from{transform:scale(.7)}to{transform:scale(1)}}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--grad);
+  color:white;
+  padding:70px 20px;
+  text-align:center;
+  border-radius:0 0 60px 60px;
+}
+header h1{font-size:2.8rem;}
+.typing{margin-top:10px;font-size:1.2rem;}
+.toggle-btn{
+  padding:10px 20px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+/* ===== SECTIONS ===== */
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+}
+.title{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom:30px;
+  color:#7b2ff7;
+}
+
+/* ===== DROPDOWN ===== */
+.drop-btn{
+  width:100%;
+  background:var(--card);
+  padding:18px;
+  border:none;
+  border-radius:18px;
+  font-size:1.1rem;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+  margin-bottom:10px;
+}
+.arrow{transition:.3s}
+.drop-btn.active .arrow{transform:rotate(180deg);}
+.drop-content{
+  display:none;
+  padding:25px;
+  margin-bottom:20px;
+  background:var(--card);
+  border-radius:18px;
+}
+
+/* ===== GRID CARDS ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+.box{
+  background:var(--grad);
+  color:white;
+  padding:22px;
+  border-radius:18px;
+  text-align:center;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.box:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 40px rgba(123,47,247,.4);
+}
+
+/* ===== PROJECT MODAL ===== */
+#modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  justify-content:center;
+  align-items:center;
+  z-index:50;
+}
+#modal img{
+  max-width:90%;
+  max-height:80%;
+  border-radius:20px;
+}
+#modal span{
+  position:absolute;
+  top:20px;
+  right:40px;
+  font-size:2rem;
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== CONTACT ===== */
+input[type=email]{
+  width:100%;
+  padding:12px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  margin-top:10px;
+}
+button.send{
+  margin-top:10px;
+  padding:12px 25px;
+  background:var(--grad);
+  border:none;
+  color:white;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+/* ===== SCROLL TOP ===== */
+#topBtn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:var(--grad);
+  color:white;
+  border:none;
+  padding:12px 15px;
+  border-radius:50%;
+  cursor:pointer;
+  display:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--grad);
+  color:white;
+  text-align:center;
+  padding:20px;
+  border-radius:40px 40px 0 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  header h1{font-size:2.3rem;}
+  .drop-content{padding:15px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Welcome -->
+<div id="welcome">
+  <h1>Hi 👋 Welcome</h1>
+  <p>Explore My Portfolio</p>
+  <button onclick="start()">Enter</button>
+</div>
+
+<header>
+  <h1>Suparna Jana</h1>
+  <div class="typing" id="typing"></div>
+  <button class="toggle-btn" onclick="toggleMode()">Dark / Light</button>
+  <button class="toggle-btn" onclick="downloadResume()">Download Resume</button>
+</header>
+
+<section>
+<h2 class="title">About</h2>
+<button class="drop-btn" onclick="toggleDrop(this)">About Me <span class="arrow">▼</span></button>
+<div class="drop-content">
+Computer Science Engineering & Technology student.<br>
+Joined <b>YCSAS Internship</b> to gain practical experience.
+</div>
+</section>
+
+<section>
+<h2 class="title">Skills</h2>
+<button class="drop-btn" onclick="toggleDrop(this)">My Skills <span class="arrow">▼</span></button>
+<div class="drop-content grid">
+<div class="box">HTML</div>
+<div class="box">CSS</div>
+<div class="box">JavaScript</div>
+<div class="box">Git & GitHub</div>
+<div class="box">React (Basic)</div>
+</div>
+</section>
+
+<section>
+<h2 class="title">Projects</h2>
+<button class="drop-btn" onclick="toggleDrop(this)">Projects & Tasks <span class="arrow">▼</span></button>
+<div class="drop-content grid">
+<div class="box" onclick="showModal('https://via.placeholder.com/600x400?text=To-Do+App')">To-Do List App</div>
+<div class="box" onclick="showModal('https://via.placeholder.com/600x400?text=HTML+Reference')">HTML Reference Site</div>
+<div class="box" onclick="showModal('https://via.placeholder.com/600x400?text=Portfolio')">Personal Portfolio</div>
+</div>
+</section>
+
+<section>
+<h2 class="title">Contact</h2>
+<button class="drop-btn" onclick="toggleDrop(this)">Contact Me <span class="arrow">▼</span></button>
+<div class="drop-content">
+<input type="email" id="email" placeholder="Your Email" value="janasuparna1730@gmail.com" readonly>
+<button class="send" onclick="contactAlert()">Send</button>
+</div>
+</section>
+
+<footer>© 2025 | YCSAS Internship Portfolio</footer>
+
+<button id="topBtn" onclick="scrollToTop()">↑</button>
+
+<!-- Modal -->
+<div id="modal" onclick="closeModal()">
+  <span>&times;</span>
+  <img id="modalImg">
+</div>
+
+<script>
+function start(){document.getElementById("welcome").style.display="none";}
+function toggleDrop(btn){
+  btn.classList.toggle("active");
+  const c = btn.nextElementSibling;
+  c.style.display = c.style.display==="block"?"none":"block";
+}
+function toggleMode(){document.body.classList.toggle("dark");}
+function downloadResume(){alert("Resume download feature - link can be added!");}
+
+/* Typing effect */
+let text="Web Development Intern at YCSAS",i=0;
+setInterval(()=>{document.getElementById("typing").innerText=text.slice(0,i++%text.length)},150);
+
+/* Scroll top */
+window.onscroll=()=>{document.getElementById("topBtn").style.display=window.scrollY>300?"block":"none";}
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+
+/* Contact Alert */
+function contactAlert(){alert("Thanks! Email is ready to send.");}
+
+/* Modal for project images */
+function showModal(src){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalImg").src=src;
+}
+function closeModal(){document.getElementById("modal").style.display="none";}
+</script>
+
+</body>
+</html>
